@@ -1,11 +1,11 @@
 from setuptools import setup, find_packages
 
 setup(
-    name="pyclassifier",
-    version="0.0.1",
+    name="hashtron",
+    version="0.0.2",
     packages=find_packages(),
     install_requires=[
-        "requests==2.32.0",
+        "requests==2.32.3",
     ],
     author="Neurlang Project",
     author_email="77860779+neurlang@users.noreply.github.com",

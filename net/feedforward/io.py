@@ -12,7 +12,7 @@ class FeedforwardNetworkIO:
             # empty model or uknown format
             return True
         if file_content[0] != ord('['):
-            raise ValueError("unknown model format: please fix your model, or update pyclassifier to recognize this model")
+            raise ValueError("unknown model format: please fix your model, or update pyclassifier (pip is hashtron) to recognize this model")
         decoded = file_content.decode('ascii')
         parsed = json.loads(decoded)
         i = 0
