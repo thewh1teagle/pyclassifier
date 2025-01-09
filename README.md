@@ -2,15 +2,15 @@
 
 This project implements a hashtron network with feedforward layers and combiners,
 including a 2D majority pooling layer. The network supports feedforward inference
-with hashtron-based classifiers but not training. For training see the original
-golang version which is CPU optimized.
+with hashtron-based classifiers but not training. For training, see the original
+golang version which is CPU and GPU (CUDA) optimized.
 
 ## Modules
 
 - `datasets`: Loader for demo datasets such as MNIST.
 - `hash`: Implements fast modular hash function.
-- `hashtron`: Implements hashtron classifier.
-- `layer`: Defines layer and combiner interfaces, including a 2D majority pooling layer.
+- `cell`: Implements the hashtron classifier which repeatedly calls the hash.
+- `layer`: Defines layer and combiner interfaces, including a 2D majority pooling combiner layer.
 - `net`: Implements the feedforward network and related utilities.
 
 ## Usage
@@ -22,10 +22,12 @@ Use `net.network.infer(input_number_or_sample)` to perform inference.
 
 ## Examples
 
+`pip install hashtron`
+
 ```python
-from hashtron.net.feedforward.net import Net
-from hashtron.layer.majpool2d.layer import MajPool2DLayer
-from hashtron.datasets.mnist.mnist import MNISTDataset
+from pyclassifier.net.feedforward.net import Net
+from pyclassifier.layer.majpool2d.layer import MajPool2DLayer
+from pyclassifier.datasets.mnist.mnist import MNISTDataset
 import urllib.request
 import tempfile
 import os
