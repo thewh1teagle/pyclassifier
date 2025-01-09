@@ -1,0 +1,34 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pyclassifier"
+version = "0.0.1"
+description = "A Python inference-only engine for the hashtron binary classifier"
+readme = "README.md"
+authors = [{ name = "Neurlang Project", email = "77860779+neurlang@users.noreply.github.com" }]
+license = { file = "LICENSE" }
+classifiers = [
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+]
+keywords = ["binary", "classifier", "machine-learning", "hashtron"]
+dependencies = [
+    "requests",
+]
+requires-python = ">=3.6"
+
+[project.urls]
+Homepage = "https://github.com/neurlang/pyclassifier"
+
+[tool.pytest.ini_options]
+addopts = [
+    "--import-mode=importlib",
+]
+pythonpath = [
+  "."
+]
+
+
