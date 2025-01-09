@@ -1,5 +1,5 @@
 import unittest
-from .constructor import Hashtron
+from pyclassifier.hashtron.constructor import Hashtron
 
 class TestHashtronForward(unittest.TestCase):
     def test_forward(self):

@@ -1,5 +1,5 @@
 import unittest
-from .hash import Hash
+from pyclassifier.hash.hash import Hash
 
 class TestHash(unittest.TestCase):
     def test_hash(self):

@@ -1,6 +1,6 @@
 import unittest
 import os
-from .net import Net
+from pyclassifier.net.feedforward.net import Net
 from pyclassifier.layer.majpool2d.layer import MajPool2DLayer
 from pyclassifier.datasets.mnist.mnist import MNISTDataset
 import urllib.request

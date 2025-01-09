@@ -1,5 +1,5 @@
 import unittest
-from .combiner import MajPool2D
+from pyclassifier.layer.majpool2d.combiner import MajPool2D
 
 class TestMajPool2D(unittest.TestCase):
     def test_put(self):
