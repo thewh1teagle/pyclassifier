@@ -1,4 +1,4 @@
-from pyclassifier.datasets.mnist.mnist import MNISTDataset
+from datasets.mnist.mnist import MNISTDataset
 import unittest
 
 class TestMnist(unittest.TestCase):
