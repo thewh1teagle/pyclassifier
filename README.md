@@ -7,6 +7,7 @@ golang version which is CPU optimized.
 
 ## Modules
 
+- `datasets`: Loader for demo datasets such as MNIST.
 - `hash`: Implements fast modular hash function.
 - `hashtron`: Implements hashtron classifier.
 - `layer`: Defines layer and combiner interfaces, including a 2D majority pooling layer.
@@ -82,11 +83,13 @@ feedforward network, along with unit tests and a README for documentation.
 
 ### Contributing
 
-0. Open issue
-1. Fork the repo
-2. Implement what is needed (no blobs in repo, host datasets or demo models externally)
-3. Run testcases: `find . -name 'test_*py' -exec python -m unittest '{}' \;`
-4. Contribute a pull request
+1. Open issue
+2. Fork the repo
+3. Implement what is needed (no blobs in repo, host datasets or demo models externally)
+4. Add tests as needed
+5. Experimentally install the package: `pip install -e .`
+6. Run all testcases: `pip install pytest` and then `python3 -m pytest`
+7. Contribute a pull request
 
 ### License
 
