@@ -34,7 +34,7 @@ class FeedforwardNetwork:
         """
         return len(self.layers)
 
-    def infer(self, in_val) -> 'FeedforwardNetworkInput':
+    def infer(self, in_val) -> SingleValue:
         """
         Infer the network output based on input.
 
