@@ -1,8 +1,8 @@
-from hashtron.hashtron.constructor import Hashtron
-from hashtron.layer.layer import Layer
-from hashtron.hash.hash import Hash
-from hashtron.net.single_value import SingleValue
-from hashtron.net.input import Input
+from pyclassifier.cell.constructor import Hashtron
+from pyclassifier.layer.layer import Layer
+from pyclassifier.hash.hash import Hash
+from pyclassifier.net.single_value import SingleValue
+from pyclassifier.net.input import Input
 
 class FeedforwardNetwork:
     def __init__(self, net):

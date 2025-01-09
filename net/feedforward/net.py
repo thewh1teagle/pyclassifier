@@ -1,6 +1,6 @@
-from hashtron.net.feedforward.feedforward_network import FeedforwardNetwork
-from hashtron.net.feedforward.io import FeedforwardNetworkIO
-from hashtron.layer.layer import Layer
+from pyclassifier.net.feedforward.feedforward_network import FeedforwardNetwork
+from pyclassifier.net.feedforward.io import FeedforwardNetworkIO
+from pyclassifier.layer.layer import Layer
 
 class Net:
     def __init__(self):

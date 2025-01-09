@@ -1,4 +1,4 @@
 # this should fix pytest
 
-import pathlib, sys
-sys.path.append('hashtron') # pip repo name
+import pathlib, sys, os
+sys.path.append(os.path.abspath(os.path.dirname(__file__)))
