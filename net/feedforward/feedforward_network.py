@@ -1,4 +1,4 @@
-from pyclassifier.cell.constructor import Hashtron
+from pyclassifier.hashtron.constructor import Hashtron
 from pyclassifier.layer.layer import Layer
 from pyclassifier.hash.hash import Hash
 from pyclassifier.net.single_value import SingleValue

@@ -1,5 +1,5 @@
 import unittest
-from pyclassifier.cell.constructor import Hashtron
+from pyclassifier.hashtron.constructor import Hashtron
 
 class TestHashtronSerialize(unittest.TestCase):
     def test_serialize(self):
