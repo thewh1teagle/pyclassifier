@@ -3,7 +3,7 @@ import os
 import hashlib
 import random
 from typing import List
-from pyclassifier.hash.hash import Hash
+from hashtron.hash.hash import Hash
 import tempfile
 import urllib.request
 

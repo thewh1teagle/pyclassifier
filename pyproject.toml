@@ -28,7 +28,7 @@ addopts = [
     "--import-mode=importlib",
 ]
 pythonpath = [
-  "."
+  "hashtron"
 ]
 
 
