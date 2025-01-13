@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="hashtron",
-    version="0.0.8",
+    version="0.0.9",
     packages=find_packages(),
     install_requires=[
         "requests==2.32.3",
