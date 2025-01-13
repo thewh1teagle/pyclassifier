@@ -1,4 +1,4 @@
-from hashtron.constructor import Hashtron
+from classifier.constructor import Hashtron
 from layer.layer import Layer
 from hash.hash import Hash
 from net.single_value import SingleValue
