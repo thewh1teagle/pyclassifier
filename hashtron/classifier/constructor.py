@@ -1,7 +1,7 @@
 import random
-from classifier.model import HashtronModel
-from classifier.forward import HashtronForward
-from classifier.view import HashtronView
+from hashtron.classifier.model import HashtronModel
+from hashtron.classifier.forward import HashtronForward
+from hashtron.classifier.view import HashtronView
 
 class Hashtron:
     def __init__(self, program=None, bits=1):

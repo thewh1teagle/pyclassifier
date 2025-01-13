@@ -1,5 +1,5 @@
-from layer.majpool2d.combiner import MajPool2D
-from layer.layer import Layer
+from hashtron.layer.majpool2d.combiner import MajPool2D
+from hashtron.layer.layer import Layer
 
 class MajPool2DLayer(Layer):
     def __init__(self, width, height, subwidth, subheight, capwidth, capheight, repeat, bias=0):

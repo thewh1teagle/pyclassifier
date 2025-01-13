@@ -1,8 +1,8 @@
 import unittest
 import os
-from net.feedforward.net import Net
-from layer.majpool2d.layer import MajPool2DLayer
-from datasets.mnist.mnist import MNISTDataset
+from hashtron.net.feedforward.net import Net
+from hashtron.layer.majpool2d.layer import MajPool2DLayer
+from hashtron.datasets.mnist.mnist import MNISTDataset
 import urllib.request
 import tempfile
 
