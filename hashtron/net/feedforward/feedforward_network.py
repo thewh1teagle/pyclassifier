@@ -1,8 +1,8 @@
-from hashtron.hashtron.constructor import Hashtron
-from hashtron.layer.layer import Layer
-from hashtron.hash.hash import Hash
-from hashtron.net.single_value import SingleValue
-from hashtron.net.input import Input
+from hashtron.constructor import Hashtron
+from layer.layer import Layer
+from hash.hash import Hash
+from net.single_value import SingleValue
+from net.input import Input
 
 class FeedforwardNetwork:
     def __init__(self, net):

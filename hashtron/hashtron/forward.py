@@ -1,4 +1,4 @@
-from hashtron.hash.hash import Hash
+from hash.hash import Hash
 
 class HashtronForward:
     def __init__(self, hashtron):
