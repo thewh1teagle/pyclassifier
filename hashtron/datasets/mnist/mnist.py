@@ -7,31 +7,6 @@ from hashtron.hash.hash import Hash
 import tempfile
 import urllib.request
 
-class MNISTLabel:
-    def __init__(self, label: int):
-        self.label = label
-    
-    def feature(self, n: int) -> int:
-        """
-        Extract the n-th feature from the image.
-
-        Args:
-            n (int): The feature index.
-
-        Returns:
-            int: The extracted feature value (uint32).
-        """
-        return self.label
-
-    @staticmethod
-    def parity() -> int:
-        """
-        Used to negate the prediction output for this sample, in order to balance unbalanced datasets.
-        Usual values are 0 and 1.
-        Returns:
-            int: The parity value (uint32).
-        """
-        return 0
 
 class MNISTSample:
     def __init__(self, image: List[int], label: int):
@@ -72,8 +47,8 @@ class MNISTSample:
         """
         return 0
 
-    def output(self) -> MNISTLabel:
-        return MNISTLabel(self.label)
+    def output(self) -> int:
+        return int(self.label)
     
 
 class MNISTDataset:

@@ -34,7 +34,7 @@ class FeedforwardNetwork:
         """
         return len(self.layers)
 
-    def infer(self, in_val) -> SingleValue:
+    def infer(self, in_val) -> int:
         """
         Infer the network output based on input.
 
@@ -48,7 +48,8 @@ class FeedforwardNetwork:
         output = in_val
         for l_prev in range(0, self.len_layers(), 2):
             output, _ = self.forward(output, l_prev, -1, 0)
-        return output
+        
+        return output.feature(0) ^ in_val.parity() & (self.get_classes() - 1)
 
     def forward(self, in_val, l: int, worst: int, neg: int) -> (Input, bool):
         """
@@ -85,4 +86,14 @@ class FeedforwardNetwork:
             bit = self.layers[l][0].forward.forward(in_val.feature(0), (0 == worst) and (neg == 1))
             return SingleValue(bit & 1), (bit & 1) != 0
 
+    def get_bits(self) -> int:
+        if len(self.mapping) == 0:
+            return 1
+        ret = self.mapping[len(self.mapping)-1]
+        if ret == 0:
+            return 1
+        return ret
+    
+    def get_classes(self) -> int:
+        return 1 << self.get_bits()
 

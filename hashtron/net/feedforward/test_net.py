@@ -45,8 +45,8 @@ class TestNetConstruct(unittest.TestCase):
             
             correct = 0
             for sample in dataset[0:500]:
-                pred = tron.network.infer(sample).feature(0) & 1
-                actual = sample.output().feature(0) & 1
+                pred = tron.network.infer(sample) & 1
+                actual = sample.output() & 1
                 if pred == actual:
                     correct+=1
             print(100 * correct // len(dataset), '% on 500', ['train', 'eval'][i], 'MNIST samples')
