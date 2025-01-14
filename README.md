@@ -9,7 +9,7 @@ golang version which is CPU and GPU (CUDA) optimized.
 
 - `datasets`: Loader for demo datasets such as MNIST.
 - `hash`: Implements fast modular hash function.
-- `hashtron`: Implements the hashtron classifier which repeatedly calls the hash.
+- `classifier`: Implements the hashtron classifier which repeatedly calls the hash.
 - `layer`: Defines layer and combiner interfaces, including a 2D majority pooling combiner layer.
 - `net`: Implements the feedforward network and related utilities.
 
