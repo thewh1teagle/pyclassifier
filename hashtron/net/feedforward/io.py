@@ -18,6 +18,9 @@ class FeedforwardNetworkIO:
         i = 0
         for layer in self.net.network.layers:
             for cell in layer:
-                cell.view.read_json(json.dumps(parsed[i]))
-                i += 1
+                if i < len(parsed):
+                    cell.view.read_json(json.dumps(parsed[i]))
+                    i += 1
+                else:
+                    return False
         return i == len(parsed)

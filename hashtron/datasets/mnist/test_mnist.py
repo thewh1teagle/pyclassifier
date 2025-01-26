@@ -1,28 +1,21 @@
-from hashtron.datasets.mnist.mnist import MNISTDataset
+from hashtron.datasets.mnist.mnist import load_mnist
 import unittest
 
 class TestMnist(unittest.TestCase):
     def test_mnist(self):
         try:
-            dataset = MNISTDataset()
-            dataset1 = MNISTDataset(False, False)
-            dataset2 = MNISTDataset(True, False)
-            dataset3 = MNISTDataset(False, True)
+            dataset, dataset1, dataset2, dataset3 = load_mnist('~/pyclassifier/datasets/mnist/')
         except FileNotFoundError:
             try:
-                dd = MNISTDataset.download()
-                dataset = MNISTDataset(dataset_dir=dd)
-                dataset1 = MNISTDataset(False, False, dataset_dir=dd)
-                dataset2 = MNISTDataset(True, False, dataset_dir=dd)
-                dataset3 = MNISTDataset(False, True, dataset_dir=dd)
+                dataset, dataset1, dataset2, dataset3 = load_mnist()
             except FileNotFoundError:
                 print("MNIST not available, skipping test...")
                 return
 
         self.assertTrue(len(dataset) == 60000)
         self.assertTrue(len(dataset1) == 10000)
-        self.assertTrue(len(dataset2) == 10000)
-        self.assertTrue(len(dataset3) == 60000)
+        self.assertTrue(len(dataset2) == 60000)
+        self.assertTrue(len(dataset3) == 10000)
 
         # Access the first sample
         sample = dataset[0]
@@ -42,8 +35,6 @@ class TestMnist(unittest.TestCase):
             print(f"Label: {sample.label}, Feature 0: {sample.feature(0)}")
             break
 
-        # Shuffle the dataset
-        dataset.shuffle()
 
 if __name__ == '__main__':
     unittest.main()

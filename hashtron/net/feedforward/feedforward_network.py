@@ -49,7 +49,13 @@ class FeedforwardNetwork:
         for l_prev in range(0, self.len_layers(), 2):
             output, _ = self.forward(output, l_prev, -1, 0)
         
-        return output.feature(0) ^ in_val.parity() & (self.get_classes() - 1)
+        val = 0
+        for j in range(16):
+            if j >= self.get_last_cells():
+                break
+            val |= (output.feature(j) & 0xFFFF) << j
+        
+        return val ^ in_val.parity() & (self.get_classes() - 1)
 
     def forward(self, in_val, l: int, worst: int, neg: int) -> (Input, bool):
         """
@@ -97,3 +103,21 @@ class FeedforwardNetwork:
     def get_classes(self) -> int:
         return 1 << self.get_bits()
 
+    def get_last_cells(self) -> int:
+        """
+        Get the number of cells in the last non-empty layer of the feedforward network.
+
+        Returns:
+            int: Number of cells in the last layer or the second-to-last layer if the last is empty.
+        """
+        if not self.layers:
+            return 0
+        
+        # Get the number of cells in the last layer
+        last_layer_size = len(self.layers[-1])
+        
+        # If the last layer is empty and there are at least two layers, fall back to the second-to-last layer
+        if last_layer_size == 0 and len(self.layers) >= 2:
+            last_layer_size = len(self.layers[-2])
+        
+        return last_layer_size

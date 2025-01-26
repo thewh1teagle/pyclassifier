@@ -74,8 +74,10 @@ class MajPool2D:
         submatrix = self.subwidth * self.subheight
         matrix = supermatrix * submatrix
         base = (m // matrix) * matrix
-        starty = m // self.width
-        startx = m % self.width
+        m %= matrix
+        m //= submatrix
+        starty = ((m) // self.width) * self.capheight
+        startx = ((m) % self.width) * self.capwidth
         o = 0
 
         for y in range(self.capheight):
