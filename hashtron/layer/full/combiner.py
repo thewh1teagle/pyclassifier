@@ -34,12 +34,16 @@ class Full:
         """
         start = m * self.bits
         end = start + self.maxbits
-        # Ensure we do not exceed the vector length
+        
+        # Replicate Go's out-of-bounds check
         if end > len(self.vec):
-            end = len(self.vec)
+            return 0
+        
         o = 0
         for pos in range(start, end):
             o <<= 1
             if self.vec[pos]:
                 o |= 1
-        return o
+        
+        # Truncate to 32-bit unsigned integer (Go's uint32)
+        return o & 0xFFFFFFFF

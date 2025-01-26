@@ -48,14 +48,13 @@ class FeedforwardNetwork:
         output = in_val
         for l_prev in range(0, self.len_layers(), 2):
             output, _ = self.forward(output, l_prev, -1, 0)
-        
         val = 0
         for j in range(16):
             if j >= self.get_last_cells():
                 break
-            val |= (output.feature(j) & 0xFFFF) << j
-        
-        return val ^ in_val.parity() & (self.get_classes() - 1)
+            val |= (output.feature(j) << j)
+
+        return val ^ in_val.parity()
 
     def forward(self, in_val, l: int, worst: int, neg: int) -> (Input, bool):
         """
@@ -101,7 +100,9 @@ class FeedforwardNetwork:
         return ret
     
     def get_classes(self) -> int:
-        return 1 << self.get_bits()
+        ret = 1 << self.get_bits()
+        ret2 = 1 << self.get_last_cells()
+        return max(ret, ret2)
 
     def get_last_cells(self) -> int:
         """
