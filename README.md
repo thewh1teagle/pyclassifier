@@ -32,6 +32,7 @@ from hashtron.datasets.mnist.mnist import load_mnist
 import urllib.request
 import tempfile
 import os
+import random
 
 # Specify network size
 fanout1 = 1
@@ -42,11 +43,11 @@ fanout5 = 1
 fanout6 = 4
 # Create a Hashtron network (MNIST handwritten digits net)
 tron = Net.new()
-tron.new_layer(fanout1*fanout2*fanout3*fanout4*fanout5*fanout6, 0, 1<<(fanout6*fanout6*2//3))
+tron.new_layer(fanout1*fanout2*fanout3*fanout4*fanout5*fanout6, 0, 1<<((fanout6*fanout6*2)//3))
 tron.new_combiner(MajPool2DLayer(fanout1*fanout2*fanout3*fanout4*fanout6, 1, fanout5, 1, fanout6, 1, 1))
-tron.new_layer(fanout1*fanout2*fanout3*fanout4, 0, 1<<(fanout4*fanout4*2//3))
+tron.new_layer(fanout1*fanout2*fanout3*fanout4, 0, 1<<((fanout4*fanout4*2)//3))
 tron.new_combiner(MajPool2DLayer(fanout1*fanout2*fanout4, 1, fanout3, 1, fanout4, 1, 1))
-tron.new_layer(fanout1*fanout2, 0, 1<<(fanout2*fanout2*2//3))
+tron.new_layer(fanout1*fanout2, 0, 1<<((fanout2*fanout2*2)//3))
 tron.new_combiner(FullLayer(fanout2, 1, 1))
 # load weights from zlib file
 filename = os.path.expanduser('~/classifier/cmd/train_mnist/output.78.json.t.zlib')
@@ -63,21 +64,21 @@ else:
 if not ok:
     raise Exception('model weights were not loaded')
 
-# test the datasets
-for i in range(2):
-    # load offline then online mnist
-    try:
-        dataset, _, _, _, = load_mnist('~/pyclassifier/datasets/mnist/')
-    except FileNotFoundError:
-        dataset, _, _, _, = load_mnist()
-    
-    correct = 0
-    for sample in dataset:
-        pred = tron.network.infer(sample) % 10
-        actual = sample.output() % 10
-        if pred == actual:
-            correct+=1
-    print(100 * correct // len(dataset), '% on', len(dataset), 'MNIST samples')
+# load offline then online mnist
+try:
+    dataset, _, _, _, = load_mnist('~/pyclassifier/datasets/mnist/')
+except FileNotFoundError:
+    dataset, _, _, _, = load_mnist()
+
+random.shuffle(dataset)
+
+correct = 0
+for sample in dataset:
+    pred = tron.network.infer(sample) % 10
+    actual = sample.output() % 10
+    if pred == actual:
+        correct+=1
+print(100 * correct // len(dataset), '% on', len(dataset), 'MNIST samples')
 ```
 
 ### Summary
