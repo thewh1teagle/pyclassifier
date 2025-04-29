@@ -7,11 +7,16 @@ See blog post and Go package
 """
 
 from typing import Dict
+from hashtron.hash.hash import Hash
 
-def hash_fn(n: int, s: int, max_val: int) -> int:
-    h = hash((n - s, s))
-    # Apply 0xFFFFFFFF mask to ensure the result fits within 32 bits
-    return ((h + s) % max_val) & 0xFFFFFFFF
+def hash64(n: int, s: int, m: int) -> int:
+    if m < 1<<32:
+        # Use 32-bit hash
+        return Hash.hash(n, s, m)
+    # dumb extension to 64bit modulo to enable massive tables
+    h = ((s<<32 | n) % m)
+    # Return 32-bit result
+    return h & 0xFFFFFFFF
 
 def byte_size(n: int) -> int:
     """
@@ -85,7 +90,7 @@ class Quatenary:
         x = key
         high = key >> 32
         for i in range(self.attemps):
-            h = hash_fn(x, high ^ i, current_cells_size)
+            h = hash64(x, high ^ i, current_cells_size)
             idx = h >> 2
             shift = (h & 3) * 2
             val = (self.filter[idx] >> shift) & 0b11
@@ -126,7 +131,7 @@ class Quatenary:
         x = key
         high = key >> 32
         for i in range(self.attemps):
-            h = hash_fn(x, high ^ i, current_cells_size)
+            h = hash64(x, high ^ i, current_cells_size)
             idx = h >> 2
             shift = (h & 3) * 2
             val = (self.filter[idx] >> shift) & 0b11
@@ -146,6 +151,7 @@ class Quatenary:
 
 
 if __name__ == '__main__':
-    quatenary = Quatenary({1: True, 2: False})
-    print(quatenary.get(1))
-    print(quatenary.get(2))
+    quatenary = Quatenary({5: True, 55: False})
+    print(quatenary.get(5))
+    print(quatenary.get(55))
+    print(quatenary.filter.hex()) # 000040
